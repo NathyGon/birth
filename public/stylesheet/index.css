@@ -1,0 +1,255 @@
+
+@font-face {
+    font-family: 'Kaph';
+    src: url('/font/Kaph.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'chaly';
+    src: url('/font/chal.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'bubble';
+    src: url('/font/textbubble.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'bubbleblack';
+    src: url('/font/bubble_black.otf') format('opentype');
+}
+@font-face {
+    font-family: 'cursive';
+    src: url('/font/cursive.ttf') format('truetype');
+}
+
+
+body,html{
+    border:2px 2px 2px black;
+    background-color: red;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+
+}
+.main{
+
+    height: 100%;
+
+    background-color: black;
+    display: grid;
+    place-items: center;    
+}
+#canvas {
+  border-radius: 10px;
+    background-color: white;
+  
+}
+.container{
+  border-radius: 10px;
+    position: relative;
+    background-color: white;
+}
+#controls{
+    top: 0;
+    left: 0;
+    position: absolute;
+    /* flex-direction: column;
+    display: flex;
+    align-items: center; */
+    width: 100%;
+    height: 100%;
+}
+p{
+    margin: 0;
+}
+.scroll{
+    position: absolute;
+    width: 100%;
+    top:0;
+    background-color: #0b0a02b0;
+    height: 100%;
+
+    
+}
+.message-container{
+    background-image: url("/images/scroll/scroll.png");
+    background-size: cover; /* Adjust to fit the container */
+    background-repeat: no-repeat; /* Prevent repeating */
+
+   height: 100%;
+
+}
+.messages{
+    width: 38%;
+   position: relative;
+   top:150px;
+    font-family: 'cursive';
+    text-align: center;
+    margin: auto;
+
+    color: red;
+    text-shadow: 1px 1px 5px white;
+    letter-spacing: 1px;
+    height: 400px;
+    text-transform: capitalize;
+}
+.buttons{
+  width: 80%;
+ position: absolute;
+ bottom: 350px;
+
+left: 130px;
+font-family: "bubbleblack";
+
+}
+
+.buttons > button:nth-child(1){
+
+  display: inline-block;
+  outline: 0;
+  border: none;
+  cursor: pointer;
+  padding: 0 24px;
+  border-radius: 50px;
+  min-width: 100px;
+  height: 50px;
+  font-size: 2em;
+
+  background-color: #FEF7E5;
+  box-shadow: 1px 5px #000000;
+  font-weight: 500;
+  color: red;
+
+}
+
+.buttons > button:nth-child(2){
+  float: right;
+ 
+  display: inline-block;
+  outline: 0;
+  border: none;
+  cursor: pointer;
+  padding: 0 24px;
+  border-radius: 50px;
+  min-width: 100px;
+  height: 50px;
+  font-size: 2em;
+  background-color: #DA905E;
+   box-shadow: 1px 5px #000000;
+  font-weight: 500;
+  color: white;
+
+}
+.messages > p:nth-child(1){
+    font-weight: bold;
+    font-size: 3em;
+    margin-right: -10px;
+    margin-bottom: 10px;
+    
+  }
+  .messages > p:nth-child(2){
+    text-align: justify;
+    
+    position: relative;
+    left: 35px;
+    font-size: 1.7em;
+    color: black;
+    max-height: 300px;
+    word-wrap: break-word;
+    overflow-y: auto;
+    overflow-x:hidden ;
+    padding-right: 10px;
+ 
+  }
+  .messages > p:nth-child(3){
+    text-align: right;
+    font-size: 2em;
+    position: absolute;
+    right: 0;
+    bottom: -20px;
+
+    letter-spacing: 5px;
+    color: red;
+    font-weight: bold;
+    margin-top:20px ;
+  
+
+    
+  
+    overflow: hidden;
+ 
+  }
+
+  .messages > p:nth-child(2)::-webkit-scrollbar {
+    width: 5px;
+   
+    border-radius: 10px;
+   
+  }
+   
+  .messages > p:nth-child(2)::-webkit-scrollbar-track {
+   border: 1px solid wheat;
+   background: burlywood;
+   border-radius: 10px;
+  }
+   
+  .messages > p:nth-child(2)::-webkit-scrollbar-thumb {
+    background-color: gold;
+    outline: 1px solid black;
+    
+    border-radius: 10px;
+  }
+
+
+
+
+  #balloon-container {
+    height: 100vh;
+   
+    width: 100vw;
+    position: absolute;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    transition: opacity 500ms;
+  }
+  
+  .balloon {
+    height: 125px;
+    width: 105px;
+    border-radius: 75% 75% 70% 70%;
+    position: relative;
+  }
+  
+  .balloon:before {
+    content: "";
+    height: 75px;
+    width: 1px;
+    padding: 1px;
+    background-color: #FDFD96;
+    display: block;
+    position: absolute;
+    top: 125px;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
+  
+  .balloon:after {
+      content: "▲";
+      text-align: center;
+      display: block;
+      position: absolute;
+      color: inherit;
+      top: 120px;
+      left: 0;
+      right: 0;
+      margin: auto;
+  }
+  
+  @keyframes float {
+    from {transform: translateY(100vh);
+    opacity: 1;}
+    to {transform: translateY(-300vh);
+    opacity: 0;}
+  }
