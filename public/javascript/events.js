@@ -1,46 +1,8 @@
 //first event
 
 // main screen
-const months = {
-  LABEL: [
-    'JUNE',
-    'JULY',
-    'AUGUST',
-    'NOVEMBER',
-    'DECEMBER',
-    'JANUARY',
-    'FEBRUARY',
-  ],
-  AUDIO: [
-    '/audio/day.wav',
-    '/audio/night.wav',
-    '/audio/halloween.wav',
-    '/audio/birth.wav',
-    '/audio/christmas.wav',
-  ],
-  CSS_NAME: ['day', 'night', 'day', 'halloween', 'christmas', 'day', 'night'],
-  //change this
-  VIDEO_STAMPS: [
-    { start: 0, end: 3 },
-    { start: 0, end: 3 },
-    { start: 0, end: 3 },
-    { start: 0, end: 3 },
-    { start: 0, end: 3 },
-    { start: 0, end: 3 },
-    { start: 0, end: 3 },
-  ],
+let interacted = false;
 
-  //change this
-  MESSAGE: [
-    'this this message is for junethis message is for junethis message is for junethis message is for junethis message is for junethis message is for junethis message is for junethis message is for junethis message is for junethis message is for june is for last message',
-    'this message is for JULY',
-    'this message is for AUGUST',
-    'this message is for NOVEMBER',
-    'this message is for DECEMBER',
-    'this message is for JANUARY',
-    'this message is for FEB',
-  ],
-};
 let IS_IMPORTANT = false;
 $(window).on('load', () => {
   //prettier-ignore
@@ -114,6 +76,7 @@ $(window).on('load', () => {
     return () => {
       media.playAudio(bg.getName());
       holder.clear();
+      cat.stopMove();
       animationProp = {
         loop: false,
         scale: [4, 1],
@@ -215,7 +178,9 @@ $(window).on('load', () => {
       //wait for 2 seconds
       setTimeout(() => {
         //change this
-        message.open('hellow');
+        let positioning = ['0px', '300px'];
+
+        message.open(bdayMessage, positioning);
         resolve();
       }, 2000);
     });
@@ -231,7 +196,7 @@ $(window).on('load', () => {
   media = new Media(months.AUDIO);
   message = new BubbleChat(months.MESSAGE);
   trigger = new Trigger(stages);
-  scrollPaper = new ScrollPaper();
+  scrollPaper = new ScrollPaper(collection_of_messages);
   trigger.addTrigger(openingScroll);
 
   bg.draw(c);
@@ -239,22 +204,28 @@ $(window).on('load', () => {
   cat.draw(c);
 });
 
-document.addEventListener('click', function () {
-  if (!interacted) {
-    interacted = true;
+$(window).on('load', () => {
+  document.addEventListener('click', function () {
+    if (!interacted) {
+      interacted = true;
 
-    window.requestAnimationFrame(animate);
-  }
+      window.requestAnimationFrame(animate);
+    }
+  });
+
+  $(window).on('keydown', (event) => {
+    if (!interacted) return; // prevent doing moves when the player did not interacted with the page yet
+
+    if (!message.done() && event.key == ' ') {
+      message.next();
+    } else if (event.key == 'd' || event.key == 'ArrowRight') {
+      cat.setDirection(1);
+    } else if (event.key == 'a' || event.key == 'ArrowLeft') {
+      cat.setDirection(-1);
+    } else if (event.key == ' ') {
+      cat.stopMove();
+    }
+  });
 });
 
-$(window).on('keydown', (event) => {
-  if (!message.done() && event.key == ' ') {
-    message.next();
-  } else if (event.key == 'd' || event.key == 'ArrowRight') {
-    cat.setDirection(1);
-  } else if (event.key == 'a' || event.key == 'ArrowLeft') {
-    cat.setDirection(-1);
-  } else if (event.key == ' ') {
-    cat.stopMove();
-  }
-});
+

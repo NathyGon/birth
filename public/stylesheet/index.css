@@ -4,6 +4,10 @@
     src: url('/font/Kaph.ttf') format('truetype');
 }
 @font-face {
+  font-family: 'ash';
+  src: url('/font/ash.otf') format('opentype');
+}
+@font-face {
     font-family: 'chaly';
     src: url('/font/chal.ttf') format('truetype');
 }
@@ -148,7 +152,7 @@ font-family: "bubbleblack";
   }
   .messages > p:nth-child(2){
     text-align: justify;
-    
+    font-family: 'ash';
     position: relative;
     left: 35px;
     font-size: 1.7em;

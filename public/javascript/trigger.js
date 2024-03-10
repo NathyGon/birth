@@ -35,7 +35,13 @@ function onelineAnimation(textWrapper, animationProp) {
   anime(animationProp);
 }
 class Holder {
-  async addBubble() {
+  async addBubble(prop) {
+    let position1 = '-500px';
+    let position2 = '0px';
+    if (prop) {
+      position1 = prop[0];
+      position2 = prop[1];
+    }
     let div = $('<div>');
     div.css({
       border: ' 2px solid',
@@ -49,7 +55,7 @@ class Holder {
 
       margin: 'auto',
       position: 'relative',
-      top: '70px',
+      top: position1,
       height: 'auto',
     });
 
@@ -58,7 +64,7 @@ class Holder {
       anime({
         targets: div[0],
         width: '70%', // -> from '28px' to '100%',
-        top: '320px',
+        top: position2,
         easing: 'easeInOutQuad',
         direction: 'alternate',
         loop: false,

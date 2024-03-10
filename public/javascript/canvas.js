@@ -1,7 +1,7 @@
 var c = document.getElementById('canvas');
 var ctx = c.getContext('2d');
 const fps = 60;
-let interacted = false;
+
 function random(num) {
   return Math.floor(Math.random() * num);
 }

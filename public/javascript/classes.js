@@ -9,7 +9,8 @@ class Media {
       snd.volume = 0.7;
       return snd;
     });
-    console.log(this.audio_list);
+    
+
   }
   playAudio(name) {
     let index = this.file_name_list.findIndex((e) => e.includes(name));
@@ -38,38 +39,43 @@ class Media {
 }
 class Video {
   currentVideo;
+  prop;
   constructor() {}
+  loop() {
+    if (this.currentVideo.currentTime >= this.prop.range.end) {
+      this.currentVideo.currentTime = this.prop.range.start;
+    }
+  }
   insert(video, prop) {
     this.currentVideo = video;
+    this.prop = prop;
     this.currentVideo.currentTime = prop.range.start;
     //if the current time reached
     //make the chat appear
 
     $(this.currentVideo).on('timeupdate', () => {
+      //prompt the message once
       if (this.currentVideo.currentTime >= prop.range.end) {
+        $(this.currentVideo).off('timeupdate'); // remove the current listner
+        message.open(); // open the message
         this.currentVideo.pause();
-        $(this.currentVideo).off('timeupdate');
-        //generate bubble text
-        //delete the video
-
-        this.remove().then(() => {
-          //wait for the video to get remove and proceed to the chat buble
-          message.open();
+        // update new listner
+        $(this.currentVideo).on('timeupdate', () => {
+          this.loop();
         });
       }
     });
   }
   show() {
-    this.currentVideo.play();
-    $(this.currentVideo).fadeIn(2000);
+    //show video if loaded
+    $(this.currentVideo).on('loadeddata', () => {
+      this.currentVideo.play();
+      // cat.toggle();
+      $(this.currentVideo).fadeIn(1000);
+    });
   }
   remove() {
-    return new Promise((resolve, reject) => {
-      $(this.currentVideo).fadeOut(1000, () => {
-        this.currentVideo.parentNode.remove();
-        resolve();
-      });
-    });
+    this.currentVideo.parentNode.remove();
   }
   pause() {
     this.currentVideo.pause();
@@ -88,12 +94,12 @@ class BubbleChat {
     this.messages = messages;
   }
 
-  async open(mess) {
+  async open(mess, prop) {
     this.promises = [];
     this.isClosed = false;
     let stage_currentIndex = bg.getIndex() - 1; // minus 1 because first stage doesnt have message
 
-    let div = await holder.addBubble();
+    let div = await holder.addBubble(prop);
 
     let myName = $('<p>').text('ANIEL NA POGI').css({
       'font-size': '1.3em',
@@ -112,6 +118,7 @@ class BubbleChat {
     div.append(this.text_element);
     let myText = mess != null ? mess : this.messages[stage_currentIndex];
     this.chunk(myText);
+   
     this.canNext = true;
     this.next();
   }
@@ -129,11 +136,13 @@ class BubbleChat {
     if (!this.canNext) {
       return;
     }
+
     if (this.chunks.length == 0) {
       //close the thing
       this.close();
       return;
     }
+
     //if its not done printing all the text
     // we can make it much faster by setting
 
@@ -162,6 +171,7 @@ class BubbleChat {
     for (let index = 0; index < text.length; index++) {
       speed += increment;
       let prom = new Promise((resolve, reject) => {
+        if (this.canNext) resolve();
         setTimeout(() => {
           element.textContent += text.charAt(index);
           resolve();
@@ -174,6 +184,7 @@ class BubbleChat {
     //if not we have to wait
     //we can only skip if the speech end
     Promise.allSettled(this.promises).then(() => {
+   
       this.canNext = true;
     });
   }
@@ -182,18 +193,11 @@ class BubbleChat {
 //change this
 class ScrollPaper {
   current_message_index = 0;
-  constructor() {}
-  OBJECT_KEYS = ['nathaniel', 'zucker'];
-  PROPERTIES = {
-    nathaniel: {
-      text: 'sdfsdfasdfasdfasd',
-      name: 'VonGela',
-    },
-    zucker: {
-      text: ' sand odkfadshf naskdfhaksdjf ',
-      name: 'hehehe hehehehehehe',
-    },
-  };
+  OBJECT_KEYS = [];
+  constructor(prop) {
+    this.OBJECT_KEYS = Object.keys(prop);
+    this.PROPERTIES = prop;
+  }
 
   add(increment, decrement, messageDiv) {
     this.parentMessage = messageDiv;
@@ -203,7 +207,8 @@ class ScrollPaper {
 
     $(increment).on('click', () => {
       let currentIndex = this.current_message_index + 1;
-      if (currentIndex >= this.OBJECT_KEYS.length - 1) {
+
+      if (currentIndex > this.OBJECT_KEYS.length - 1) {
         this.remove();
         return;
       }

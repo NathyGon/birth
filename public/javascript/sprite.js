@@ -33,6 +33,9 @@ class Sprite {
   toggle() {
     this.IN_MAIN_EVENT = this.IN_MAIN_EVENT ? false : true;
   }
+  startMove() {
+    this.stop = false;
+  }
 
   draw(canvas) {
     var ctx = canvas.getContext('2d');
