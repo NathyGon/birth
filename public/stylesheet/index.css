@@ -26,12 +26,26 @@
 }
 
 
+
 body,html{
     border:2px 2px 2px black;
-    background-color: red;
+    
     margin: 0;
     padding: 0;
     height: 100%;
+
+}
+#clicker{
+  font-family:"Kaph";
+  font-size: 2em;
+  z-index: 100;
+  position: fixed;
+  color: white;
+  display: grid;
+  place-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
 
 }
 .main{
@@ -71,8 +85,6 @@ p{
     top:0;
     background-color: #0b0a02b0;
     height: 100%;
-
-    
 }
 .message-container{
     background-image: url("/images/scroll/scroll.png");
@@ -143,12 +155,34 @@ font-family: "bubbleblack";
   color: white;
 
 }
+.buttons > button:nth-child(3){
+position: absolute;
+top:-300px;
+left: -100px;
+outline: 0;
+  border: 1px solid black;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 40px;
+  width: 50px;
+  height: 50px;
+  font-size: 2em;
+  background-color: rgb(157, 20, 20);
+   box-shadow: 1px 5px #000000;
+  font-weight: 500;
+  color: white;
+
+}
 .messages > p:nth-child(1){
     font-weight: bold;
     font-size: 3em;
     margin-right: -10px;
     margin-bottom: 10px;
     
+  }
+  .messages > img{
+    max-height: 300px;
+    object-fit: contain;
   }
   .messages > p:nth-child(2){
     text-align: justify;

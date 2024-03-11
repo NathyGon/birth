@@ -84,6 +84,7 @@ class Holder {
     });
     var video = document.createElement('video');
     video.setAttribute('src', 'video/meme.mp4');
+    video.volume = 1;
     $(video).css({
       width: '40%',
       border: '5px solid black',
@@ -144,14 +145,21 @@ class Holder {
     scroll.append(container);
     let messages = $('<div></div>').addClass('messages');
     let buttons = $('<div></div>').addClass('buttons');
-    let decrement = $('<button>-</button>');
-    let increment = $('<button>+</button>');
+    let decrement = $('<button><</button>');
+    let increment = $('<button>></button>');
+    let close = $('<button>X</button>');
     buttons.append(decrement);
     buttons.append(increment);
+    buttons.append(close);
     container.append(buttons);
     container.append(messages);
 
-    scrollPaper.add(increment, decrement, messages);
+    scrollPaper.add({
+      increase: increment,
+      decrease: decrement,
+      close: close,
+      parent: messages,
+    });
 
     $('#controls').append(scroll);
   }

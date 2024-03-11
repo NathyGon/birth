@@ -5,7 +5,7 @@ class Sprite {
   height_offset = 10;
   y = 0;
   Image_name = 'cat';
-  audio_file = '/audio/cat.wav';
+  audio_file = '/audio/cat.mp3';
   current_frame = 0;
   number_of_animation = 6 - 1;
   speed = 3; //3
@@ -28,13 +28,14 @@ class Sprite {
     this.Image = Image[key][0];
     this.audio = new Audio(this.audio_file);
     this.audio.loop = true;
-    this.audio.volume = 0.1;
+    this.audio.volume = 0.3;
   }
   toggle() {
     this.IN_MAIN_EVENT = this.IN_MAIN_EVENT ? false : true;
   }
   startMove() {
     this.stop = false;
+    this.IN_MAIN_EVENT = false;
   }
 
   draw(canvas) {
@@ -55,6 +56,9 @@ class Sprite {
     this.stop = true;
   }
   animate(ctx) {
+    //this is the priority event
+    //if any of this condition true
+    //it means that the sprite is on main event
     if (!this.stop && !this.IN_MAIN_EVENT) {
       this.accumulated_time += 5;
       if (this.accumulated_time >= this.FRAME_SPEED) {

@@ -189,6 +189,7 @@ $(window).on('load', () => {
 
   stages = [firstPage, ...stages, lastEvent];
 
+  //classes declaration
   video_handler = new Video();
   bg = new background(Images);
   cat = new Sprite(Images, canvas.width, canvas.height);
@@ -198,34 +199,36 @@ $(window).on('load', () => {
   trigger = new Trigger(stages);
   scrollPaper = new ScrollPaper(collection_of_messages);
   trigger.addTrigger(openingScroll);
-
-  bg.draw(c);
-  cat.moveMiddle();
-  cat.draw(c);
 });
 
 $(window).on('load', () => {
-  document.addEventListener('click', function () {
-    if (!interacted) {
-      interacted = true;
+  //make sure the user interacted with the page
+  //to prevent errors
+  $('#clicker').on('click', (e) => {
+    let clicker = e.target;
+    $(clicker).fadeOut(1200, () => {
+      clicker.remove();
 
       window.requestAnimationFrame(animate);
-    }
+      $(window).on('keydown', (event) => {
+        moveHandler(event);
+      });
+    });
   });
 
-  $(window).on('keydown', (event) => {
-    if (!interacted) return; // prevent doing moves when the player did not interacted with the page yet
-
-    if (!message.done() && event.key == ' ') {
+  const moveHandler = (event) => {
+    if (!message.done()) {
       message.next();
-    } else if (event.key == 'd' || event.key == 'ArrowRight') {
+      return;
+    }
+    if (event.key == 'd' || event.key == 'ArrowRight') {
       cat.setDirection(1);
     } else if (event.key == 'a' || event.key == 'ArrowLeft') {
       cat.setDirection(-1);
     } else if (event.key == ' ') {
       cat.stopMove();
     }
-  });
+  };
 });
 
 
