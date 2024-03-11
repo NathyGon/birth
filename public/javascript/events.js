@@ -28,7 +28,7 @@ $(window).on('load', () => {
       },
     };
     data = {
-      text: ['DISNEY PRINCESS', 'BEFORE THE', '23TH'],
+      text: ['Disney Princess', 'Before the', '23rd'],
       spacing: 170,
       css: {
         top: '10px',
