@@ -35,15 +35,16 @@ $(window).on('load', () => {
         'font-family': 'Kaph, sans-serif',
         'font-size': '5em',
         'text-align': 'center',
-        'text-shadow': '8px 8px #CE3E50 , 8px 16px #8F3755, 8px 24px #302047',
-        color: '#FFA437',
+        'text-shadow': '8px 8px #86BAE0 , 8px 16px #F7C42F, 8px 24px #F7F0C6',
+        color: '#0763A2',
+        '-webkit-text-stroke': '3px black',
       },
       animation: animationProp,
     };
 
     holder.addAnimatedText(data);
     animationProp = {
-      loop: false,
+      loop: true,
       scale: [4, 1],
       opacity: [0, 1],
       translateZ: 0,
@@ -52,15 +53,16 @@ $(window).on('load', () => {
       delay: (el, i) => 100 * i,
     };
     data = {
-      text: ['Move to start -> '],
+      text: ['<- Move to start -> '],
       spacing: 50,
       css: {
         top: '20px',
-        'font-family': 'chaly, sans-serif',
+        'font-family': 'Kaph, sans-serif',
         'font-size': '2em',
         'text-align': 'center',
 
-        color: 'red',
+        color: '#DA4C5F',
+        '-webkit-text-stroke': '1px black',
       },
       animation: animationProp,
     };

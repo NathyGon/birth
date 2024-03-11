@@ -261,8 +261,9 @@ css = {
     'font-family': 'Kaph, sans-serif',
     'font-size': '5em',
     'text-align': 'center',
-    'text-shadow': '8px 8px #CFAD6E , 8px 16px #94C11E, 8px 24px #396F24',
-    color: '#D5D5D3',
+    'text-shadow': '8px 8px #94C11E , 8px 16px #CFAD6E, 8px 24px #D5D5D3',
+    '-webkit-text-stroke': '2px black',
+    color: '#396F24',
   },
   halloween: {
     margin: '20px 0 20px 0',
@@ -271,6 +272,7 @@ css = {
     'text-align': 'center',
     'text-shadow': '8px 8px #CE3E50 , 8px 16px #8F3755, 8px 24px #302047',
     color: '#FFA437',
+    '-webkit-text-stroke': '2px black',
   },
   night: {
     margin: '20px 0 20px 0',
@@ -280,6 +282,7 @@ css = {
     'text-shadow':
       '0px 0px 6px black ,8px 8px  black  , 8px 16px #004285, 8px 24px ',
     color: 'white',
+    '-webkit-text-stroke': '2px black',
   },
   christmas: {
     margin: '20px 0 20px 0',
@@ -288,6 +291,7 @@ css = {
     'text-align': 'center',
     'text-shadow': '8px 8px  #509637  , 8px 16px #22659A, 8px 24px #D2F2FF',
     color: 'white',
+    '-webkit-text-stroke': '2px black',
   },
   birth: {
     margin: '20px 0 20px 0',
@@ -296,5 +300,6 @@ css = {
     'text-align': 'center',
     'text-shadow': '8px 8px  white  , 8px 16px  #FB9CC3 , 8px 24px #633D5B',
     color: '#6D4130',
+    '-webkit-text-stroke': '2px black',
   },
 };
