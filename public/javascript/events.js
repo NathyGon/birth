@@ -201,11 +201,9 @@ $(window).on('load', () => {
   let container = document.body;
   console.log($(container).width());
 
-  canvas.width = $(container).width();
-  canvas.height = $(container).height();
-
   if (window.matchMedia('(orientation: portrait)').matches) {
-    screen.orientation.lock('landscape');
+    canvas.width = $(container).height();
+    canvas.height = $(container).width();
   }
 
   video_handler = new Video();
@@ -226,6 +224,10 @@ $(window).on('load', () => {
     let clicker = e.target;
     $(clicker).fadeOut(1200, () => {
       clicker.remove();
+      if (isMobileDevice()) {
+        document.body.requestFullscreen();
+        screen.orientation.lock('landscape');
+      }
       screenTapsHandler();
 
       $(window).on('keydown', (event) => {

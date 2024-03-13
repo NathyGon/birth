@@ -37,7 +37,7 @@ function onelineAnimation(textWrapper, animationProp) {
 }
 class Holder {
   async addBubble(prop) {
-    let position1 = '-500px';
+    let position1 = '-400px';
     let position2 = '0px';
     if (prop) {
       position1 = prop[0];

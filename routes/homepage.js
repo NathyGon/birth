@@ -4,7 +4,7 @@ const rootDir = process.cwd();
 const util = require('../src/util');
 
 router.get('/', async (req, res) => {
-  console.log('some one connecting');
+
   let path_name = rootDir + '/public/images';
   let list_of_dir = await util.getFilenames(path_name);
 
