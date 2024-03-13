@@ -58,7 +58,7 @@ function animate() {
 //write how the game progress
 function actions() {
   //prioritize the chat
-  if (!message.done()) {
+  if (!message.done() || scrollPaper.isOpen()) {
     cat.stopMove();
     return;
   }

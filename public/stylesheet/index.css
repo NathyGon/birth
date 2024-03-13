@@ -29,10 +29,11 @@
 
 body,html{
     border:2px 2px 2px black;
-    
     margin: 0;
     padding: 0;
-    height: 100%;
+    height: 100vh;
+    width: 100vw;
+  overflow: hidden;
 
 }
 #clicker{
@@ -50,26 +51,31 @@ body,html{
 }
 .main{
 
-    height: 100%;
-
     background-color: black;
-    display: grid;
-    place-items: center;    
+    height: 100vh;
+    width: 100vw;
+ 
 }
+
 #canvas {
-  border-radius: 10px;
-    background-color: white;
+  border-radius: 10px;  
+  width: 100%;
+  height: 100%;
+
+    background-color: none;
   
 }
 .container{
-  border-radius: 10px;
-    position: relative;
+
+  top: 0;
+    position: absolute;
     background-color: white;
 }
 #controls{
     top: 0;
     left: 0;
-    position: absolute;
+    position: absolute; 
+   
     /* flex-direction: column;
     display: flex;
     align-items: center; */
@@ -88,32 +94,86 @@ p{
 }
 .message-container{
     background-image: url("/images/scroll/scroll.png");
-    background-size: cover; /* Adjust to fit the container */
+    background-size: contain; /* Adjust to fit the container */
     background-repeat: no-repeat; /* Prevent repeating */
-
+    position: relative;
+    background-position: center; 
    height: 100%;
 
 }
 .messages{
-    width: 38%;
+    width: 40%;
    position: relative;
-   top:150px;
+   top:20vh;
     font-family: 'cursive';
     text-align: center;
     margin: auto;
+  left: 5vh;
 
     color: red;
     text-shadow: 1px 1px 5px white;
     letter-spacing: 1px;
-    height: 400px;
+    height: 90vh;
     text-transform: capitalize;
 }
-.buttons{
-  width: 80%;
- position: absolute;
- bottom: 350px;
 
-left: 130px;
+.messages > p:nth-child(1){
+  font-weight: bold;
+  font-size: 10vh;
+
+  
+}
+.messages > img{
+  height: 40vh;
+  object-fit: contain;
+}
+.messages > p:nth-child(2){
+  text-align: justify;
+  font-family: 'ash';
+  position: relative;
+  width: 30vw;
+  margin: auto;
+  padding-right: 10px;
+  font-size: 5vh;
+  color: black;
+  height: 40vh;
+  word-wrap: break-word;
+  overflow-y: auto;
+  overflow-x:hidden ;
+  
+}
+.messages > p:nth-child(3){
+  text-align: right;
+  font-family: 'ash';
+  position: relative;
+  width: 30vw;
+  margin: auto;
+  padding-right: 10px;
+  font-size: 6vh;
+  margin-top: 10px;
+  color: red;
+  height: 40vh;
+  word-wrap: break-word;
+  overflow-y: auto;
+  overflow-x:hidden ;
+
+
+  
+
+  overflow: hidden;
+
+}
+
+
+
+.buttons{
+
+ position: absolute;
+  width: 80%;
+  top: 50%;
+
+  left: 50%;
+  transform: translate(-50%, -50%);
 font-family: "bubbleblack";
 
 }
@@ -124,10 +184,13 @@ font-family: "bubbleblack";
   outline: 0;
   border: none;
   cursor: pointer;
-  padding: 0 24px;
+  padding: 0 2vh;
   border-radius: 50px;
-  min-width: 100px;
-  height: 50px;
+  width: 10vh;
+  height: 10vh;
+
+  max-width: 60px;
+  max-height: 60px;
   font-size: 2em;
 
   background-color: #FEF7E5;
@@ -139,15 +202,16 @@ font-family: "bubbleblack";
 
 .buttons > button:nth-child(2){
   float: right;
- 
   display: inline-block;
   outline: 0;
   border: none;
   cursor: pointer;
-  padding: 0 24px;
+  padding: 0 2vh;
   border-radius: 50px;
-  min-width: 100px;
-  height: 50px;
+  width: 10vh;
+  height: 10vh;
+  max-width: 60px;
+  max-height: 60px;
   font-size: 2em;
   background-color: #DA905E;
    box-shadow: 1px 5px #000000;
@@ -155,67 +219,28 @@ font-family: "bubbleblack";
   color: white;
 
 }
-.buttons > button:nth-child(3){
+.scroll > button{
 position: absolute;
-top:-300px;
-left: -100px;
+
 outline: 0;
   border: 1px solid black;
   cursor: pointer;
-  padding: 5px;
-  border-radius: 40px;
-  width: 50px;
-  height: 50px;
-  font-size: 2em;
+ position: absolute;
+ top: 5vh;
+ left:5vh;
+  border-radius: 50px;
+  width: 10vh;
+  height: 10vh;
+  max-width: 60px;
+  max-height: 60px;
+  font-size: 1.5em;
   background-color: rgb(157, 20, 20);
-   box-shadow: 1px 5px #000000;
+  box-shadow: 1px 5px hsl(0, 0%, 0%);
   font-weight: 500;
   color: white;
 
 }
-.messages > p:nth-child(1){
-    font-weight: bold;
-    font-size: 3em;
-    margin-right: -10px;
-    margin-bottom: 10px;
-    
-  }
-  .messages > img{
-    max-height: 300px;
-    object-fit: contain;
-  }
-  .messages > p:nth-child(2){
-    text-align: justify;
-    font-family: 'ash';
-    position: relative;
-    left: 35px;
-    font-size: 1.7em;
-    color: black;
-    max-height: 300px;
-    word-wrap: break-word;
-    overflow-y: auto;
-    overflow-x:hidden ;
-    padding-right: 10px;
- 
-  }
-  .messages > p:nth-child(3){
-    text-align: right;
-    font-size: 2em;
-    position: absolute;
-    right: 0;
-    bottom: -20px;
 
-    letter-spacing: 5px;
-    color: red;
-    font-weight: bold;
-    margin-top:20px ;
-  
-
-    
-  
-    overflow: hidden;
- 
-  }
 
   .messages > p:nth-child(2)::-webkit-scrollbar {
     width: 5px;

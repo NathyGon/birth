@@ -8,6 +8,7 @@ class Trigger {
   }
   listen(bg) {
     let stage_now = this.STAGES[bg.getIndex()];
+
     if (this.current_stage != stage_now) {
       this.current_stage = stage_now;
       this.current_stage();
@@ -47,7 +48,7 @@ class Holder {
       border: ' 2px solid',
 
       'border-radius': '10px',
-      ' padding': '10px',
+      ' padding': '3vh',
       ' box-shadow': '5px 10px',
       background: 'white',
       padding: '20px',
@@ -79,7 +80,7 @@ class Holder {
     let div = $('<div>');
     div.css({
       position: 'relative',
-      margin: '40px 0px 0px 0px ',
+      margin: '0 0px 0px 0px ',
       'text-align': 'center',
     });
     var video = document.createElement('video');
@@ -108,9 +109,7 @@ class Holder {
       .css(css);
     let p;
     texts.forEach((text) => {
-      p = $('<p>')
-        .css({ 'line-height': prop.spacing + 'px' })
-        .text(text);
+      p = $('<p>').css({ 'line-height': prop.spacing }).text(text);
       // $('<p>').css();
       div.append(p);
     });
@@ -148,9 +147,10 @@ class Holder {
     let decrement = $('<button><</button>');
     let increment = $('<button>></button>');
     let close = $('<button>X</button>');
+    scroll.append(close);
     buttons.append(decrement);
     buttons.append(increment);
-    buttons.append(close);
+
     container.append(buttons);
     container.append(messages);
 
@@ -178,9 +178,7 @@ class Holder {
       .css(css);
 
     texts.forEach((text) => {
-      let p = $('<p>')
-        .css({ 'line-height': prop.spacing + 'px' })
-        .text(text);
+      let p = $('<p>').css({ 'line-height': prop.spacing }).text(text);
       // $('<p>').css();
       div.append(p);
     });

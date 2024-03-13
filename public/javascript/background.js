@@ -23,7 +23,7 @@ class background {
   draw(canvas) {
     let chosen_image = this.image_sequence[this.current_background];
     var ctx = canvas.getContext('2d');
-    ctx.drawImage(chosen_image, 0, 0, 1280, 720);
+    ctx.drawImage(chosen_image, 0, 0, canvas.width, canvas.height);
   }
   setImageNames(Images) {
     let image_names = Object.keys(Images);

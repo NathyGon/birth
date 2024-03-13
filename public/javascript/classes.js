@@ -98,15 +98,15 @@ class BubbleChat {
     let div = await holder.addBubble(prop);
     this.isClosed = false; // make sure its open before setting it to open
     let myName = $('<p>').text('ANIEL NA POGI').css({
-      'font-size': '1.3em',
+      'font-size': '3.4vh',
       'font-family': 'bubbleblack',
       color: 'red',
     });
     this.text_element = $('<p>').css({
-      'font-size': '1.3em',
+      'font-size': '3vh',
 
       'font-family': 'bubble',
-      margin: '10px 40px 0 40px',
+      margin: '10px 3vh 0 3vh',
       'word-wrap': 'Break-word',
     });
 
@@ -199,6 +199,8 @@ class BubbleChat {
 class ScrollPaper {
   current_message_index = 0;
   OBJECT_KEYS = [];
+  close_button;
+  isClosed = true;
   constructor(prop) {
     this.OBJECT_KEYS = Object.keys(prop);
     this.PROPERTIES = prop;
@@ -235,6 +237,7 @@ class ScrollPaper {
     $(data['close']).on('click', () => {
       this.remove();
     });
+    this.isClosed = false;
   }
   change() {
     let key = this.OBJECT_KEYS[this.current_message_index];
@@ -250,55 +253,57 @@ class ScrollPaper {
 
     parent.append($('<p></p>').text(data['sender']));
   }
+  isOpen() {
+    return !this.isClosed;
+  }
   remove() {
     this.current_message_index = 0;
+    this.isClosed = true;
     $('.scroll').remove();
   }
 }
 css = {
   day: {
-    margin: '20px 0 20px 0',
     'font-family': 'Kaph, sans-serif',
-    'font-size': '5em',
+    'font-size': '10vh',
     'text-align': 'center',
-    'text-shadow': '8px 8px #94C11E , 8px 16px #CFAD6E, 8px 24px #D5D5D3',
+    'text-shadow': '0.8vh 1vh #94C11E ,  0.8vh 2vh #CFAD6E, 0.8vh 3vh #D5D5D3',
     '-webkit-text-stroke': '2px black',
     color: '#396F24',
   },
   halloween: {
-    margin: '20px 0 20px 0',
     'font-family': 'Kaph, sans-serif',
-    'font-size': '5em',
+    'font-size': '10vh',
     'text-align': 'center',
-    'text-shadow': '8px 8px #CE3E50 , 8px 16px #8F3755, 8px 24px #302047',
+    'text-shadow':
+      '0.8vh 1vh #CE3E50 ,   0.8vh 2vh #8F3755,  0.8vh 3vh #302047',
     color: '#FFA437',
     '-webkit-text-stroke': '2px black',
   },
   night: {
-    margin: '20px 0 20px 0',
     'font-family': 'Kaph, sans-serif',
-    'font-size': '5em',
+    'font-size': '10vh',
     'text-align': 'center',
     'text-shadow':
-      '0px 0px 6px black ,8px 8px  black  , 8px 16px #004285, 8px 24px ',
+      '0px 0px 6px black ,0.8vh 1vh  black  ,   0.8vh 2vh #004285,  0.8vh 3vh white ',
     color: 'white',
     '-webkit-text-stroke': '2px black',
   },
   christmas: {
-    margin: '20px 0 20px 0',
     'font-family': 'Kaph, sans-serif',
-    'font-size': '5em',
+    'font-size': '10vh',
     'text-align': 'center',
-    'text-shadow': '8px 8px  #509637  , 8px 16px #22659A, 8px 24px #D2F2FF',
+    'text-shadow':
+      '0.8vh 1vh  #509637  ,   0.8vh 2vh #22659A,  0.8vh 3vh #D2F2FF',
     color: 'white',
     '-webkit-text-stroke': '2px black',
   },
   birth: {
-    margin: '20px 0 20px 0',
     'font-family': 'Kaph, sans-serif',
-    'font-size': '5em',
+    'font-size': '10vh',
     'text-align': 'center',
-    'text-shadow': '8px 8px  white  , 8px 16px  #FB9CC3 , 8px 24px #633D5B',
+    'text-shadow':
+      '0.8vh 1vh  white  ,   0.8vh 2vh  #FB9CC3 ,  0.8vh 3vh #633D5B',
     color: '#6D4130',
     '-webkit-text-stroke': '2px black',
   },

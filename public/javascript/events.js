@@ -2,6 +2,11 @@
 
 // main screen
 let interacted = false;
+function isMobileDevice() {
+  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  );
+}
 
 let IS_IMPORTANT = false;
 $(window).on('load', () => {
@@ -29,13 +34,13 @@ $(window).on('load', () => {
     };
     data = {
       text: ['Disney Princess', 'Before the', '23rd'],
-      spacing: 170,
+      spacing: "20vh",
       css: {
         top: '10px',
         'font-family': 'Kaph, sans-serif',
-        'font-size': '5em',
+        'font-size': '5vw',
         'text-align': 'center',
-        'text-shadow': '8px 8px #86BAE0 , 8px 16px #F7C42F, 8px 24px #F7F0C6',
+        'text-shadow': '0.8vh 1vh #86BAE0 , 0.8vh 2vh #F7C42F, 0.8vh 3vh #F7F0C6',
         color: '#0763A2',
         '-webkit-text-stroke': '3px black',
       },
@@ -54,11 +59,11 @@ $(window).on('load', () => {
     };
     data = {
       text: ['<- Move to start -> '],
-      spacing: 50,
+      spacing: "1vh",
       css: {
-        top: '20px',
+        top: '10vh',
         'font-family': 'Kaph, sans-serif',
-        'font-size': '2em',
+        'font-size': '1.7vw',
         'text-align': 'center',
 
         color: '#DA4C5F',
@@ -90,7 +95,7 @@ $(window).on('load', () => {
       };
       data = {
         text: [label],
-        spacing: 100,
+        spacing: '20vh',
         css: css[css_name],
         animation: animationProp,
       };
@@ -170,7 +175,7 @@ $(window).on('load', () => {
     };
     data = {
       text: ['HAPPY BIRTHDAY VON'],
-      spacing: 100,
+      spacing: '25vh',
       css: css['birth'],
       animation: animationProp,
     };
@@ -180,7 +185,7 @@ $(window).on('load', () => {
       //wait for 2 seconds
       setTimeout(() => {
         //change this
-        let positioning = ['0px', '300px'];
+        let positioning = ['0px', '20vh'];
 
         message.open(bdayMessage, positioning);
         resolve();
@@ -192,6 +197,17 @@ $(window).on('load', () => {
   stages = [firstPage, ...stages, lastEvent];
 
   //classes declaration
+  // resize canvas widht and height
+  let container = document.body;
+  console.log($(container).width());
+
+  canvas.width = $(container).width();
+  canvas.height = $(container).height();
+
+  if (window.matchMedia('(orientation: portrait)').matches) {
+    screen.orientation.lock('landscape');
+  }
+
   video_handler = new Video();
   bg = new background(Images);
   cat = new Sprite(Images, canvas.width, canvas.height);
@@ -210,24 +226,44 @@ $(window).on('load', () => {
     let clicker = e.target;
     $(clicker).fadeOut(1200, () => {
       clicker.remove();
+      screenTapsHandler();
+
+      $(window).on('keydown', (event) => {
+        moveHandler(event.key);
+      });
 
       window.requestAnimationFrame(animate);
-      $(window).on('keydown', (event) => {
-        moveHandler(event);
-      });
     });
   });
+  let screenTapsHandler = () => {
+    let taps = 0;
+    $(window).on('click', (event) => {
+      taps += 1;
 
-  const moveHandler = (event) => {
-    if (!message.done()) {
+      if (taps > 1) return;
+      setTimeout(() => {
+        if (taps >= 2) {
+          keypress = ' ';
+        } else if (event.pageX <= cat.x) keypress = 'a';
+        else keypress = 'd';
+
+        moveHandler(keypress);
+
+        taps = 0;
+      }, 200);
+    });
+  };
+
+  const moveHandler = (key) => {
+    if (!message.done() || scrollPaper.isOpen()) {
       message.next();
       return;
     }
-    if (event.key == 'd' || event.key == 'ArrowRight') {
+    if (key == 'd' || key == 'ArrowRight') {
       cat.setDirection(1);
-    } else if (event.key == 'a' || event.key == 'ArrowLeft') {
+    } else if (key == 'a' || key == 'ArrowLeft') {
       cat.setDirection(-1);
-    } else if (event.key == ' ') {
+    } else if (key == ' ') {
       cat.stopMove();
     }
   };
