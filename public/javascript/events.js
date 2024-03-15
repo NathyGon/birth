@@ -199,13 +199,13 @@ $(window).on('load', () => {
   //classes declaration
   // resize canvas widht and height
   let container = document.body;
-  console.log($(container).width());
+  canvas.width = $(container).width();
+  canvas.height = $(container).height();
 
-  if (window.matchMedia('(orientation: portrait)').matches) {
+  if (window.matchMedia('(orientation: portrait)').matches && isMobileDevice) {
     canvas.width = $(container).height();
     canvas.height = $(container).width();
   }
-
   video_handler = new Video();
   bg = new background(Images);
   cat = new Sprite(Images, canvas.width, canvas.height);
