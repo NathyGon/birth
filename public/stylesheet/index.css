@@ -91,6 +91,7 @@ p{
     top:0;
     background-color: #0b0a02b0;
     height: 100%;
+    z-index: 2;
 }
 .message-container{
     background-image: url("/images/scroll/scroll.png");
@@ -239,6 +240,7 @@ outline: 0;
   font-weight: 500;
   color: white;
 
+
 }
 
 
@@ -316,3 +318,6 @@ outline: 0;
     to {transform: translateY(-300vh);
     opacity: 0;}
   }
+
+
+

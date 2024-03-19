@@ -1,5 +1,5 @@
-const months = {
-  LABEL: [
+const STAGES_DETAILS = {
+  Stage_Name: [
     'JUNE',
     'JULY',
     'AUGUST',
@@ -28,7 +28,7 @@ const months = {
   ],
 
   //change this
-  MESSAGE: [
+  MESSAGES: [
     `It was June the month we met, I wouldn't think that we would get this far. This all where it started. I remember the time we talked to each other and how fun it was and I was amazed that you are unique to the ones that i've been talking to. 
 We have talked  a lot and we have fun in doing so. Thought. I wouldn't go further if I didn't find you attractive AHAHAHA Anyways, enjoy keep moving forward :)`,
     `It was the month of july when we started to get to know each other. I started trusting you and share everything what I can, you didn't get bored or anything you just listen to me a lot. Thought you keep listening but you wouldn't share anything to me  I figured you don't trust me at that time. That what was the time that I know that you were amazing. So, keep going we have a long way to go.`,

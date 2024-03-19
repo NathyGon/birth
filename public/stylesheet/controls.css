@@ -1,0 +1,50 @@
+.bubble-container{
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 3vh;
+     box-shadow: 5px 10px;
+    background: white;
+    padding: 20px;
+    width: 0%;
+    margin: auto;
+    position: relative;
+    height: auto;
+    z-index: 2;
+  }
+
+  .video-container{
+    position: relative;
+    margin: 0 0px 0px 0px ;
+    text-align: center;
+  }
+  .video-container >video {
+    width: 40%;
+    border: 5px solid black;
+    display: none;
+  }
+  .single-line , .multiline{
+    position: relative;
+  }
+
+  .single-line > p {
+  line-height: 25vh;
+  }
+
+  .multiline > p {
+    line-height: 18vh;
+    }
+  .bubble-name{
+
+    font-size: 3.4vh;
+    font-family: bubbleblack;
+    color: red;
+  }
+  .bubble-text{
+    font-size: 2.8vh;
+    font-family: bubble;
+    margin: 10px 3vh 0 3vh;
+    word-wrap: Break-word;
+  }
+
+  
+
